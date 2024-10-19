@@ -29,11 +29,19 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
-      - name: call from secret
-        run: echo ${{ secrets.MY_SECRET }}
+
+      - name: build
+        run: docker build -t a8017/webapp:latest -t a8017/webapp:$GITHUB_REF_NAME -f Dockerfile .
+
+      - name: login
+        uses: docker/login-action@v3
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
       
-      - name: call from variables
-        run: echo ${{ vars.MY_VARIABLE}}
+      - name: push
+        run: docker push a8017/webapp:latest
+        run: docker push a8017/webapp:$GITHUB_REF_NAME
 
       
 
