@@ -11,11 +11,6 @@ on:
 env:
   file_name: env1
 
-
-
-
-
-  
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -34,20 +29,29 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: | 
-         echo Hello, world! $file_name
-         echo $inside
-         echo $outside
+      - name: call from secret
+        run: echo ${{ secrets.MY_SECRET }}
+      
+      - name: call from variables
+        run: echo ${{ vars.MY_VARIABLE}}
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo hello , world! $file_name
-          echo $inside
-          echo $outside
+      
+
+
+      # # Runs a single command using the runners shell
+      # - name: Run a one-line script
+      #   run: | 
+      #    echo Hello, world! $file_name
+      #    echo $inside
+      #    echo $outside
+
+      # # Runs a set of commands using the runners shell
+      # - name: Run a multi-line script
+      #   run: |
+      #     echo hello , world! $file_name
+      #     echo $inside
+      #     echo $outside
           
 
-        env:
-           outside: inside_step
+      #   env:
+      #      outside: inside_step
