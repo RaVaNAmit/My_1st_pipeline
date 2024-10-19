@@ -8,10 +8,10 @@ on:
     branches: [ "uat" , "development" ]
     tags: [ "^u*" , "^v*" ]
     
-// This is Environment 1
+#  This is Environment 1
 
-env:
-  file_name: env1
+# env:
+#   file_name: env1
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
