@@ -40,8 +40,9 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       
       - name: push
-        run: docker push a8017/webapp:latest
-        run: docker push a8017/webapp:$GITHUB_REF_NAME
+        run: | 
+          docker push a8017/webapp:latest
+          docker push a8017/webapp:$GITHUB_REF_NAME
 
       
 
